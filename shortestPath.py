@@ -1,4 +1,5 @@
 from heapq import heappop, heappush
+from sys import maxsize
 
 
 class Node:
@@ -7,11 +8,11 @@ class Node:
         self.neighbors = {neighbor[0]: neighbor[1] for neighbor in neighbors}
 
     def getDistance(self, node: str):
-        return self.neighbors.get(node, float('inf'))
+        return self.neighbors.get(node, maxsize)
 
 
 def dijkstra(graph: dict, sourceNode: str):
-    dist = {city: float('inf') for city in graph}
+    dist = {city: maxsize for city in graph}
     dist[sourceNode] = 0
     nodes = {city: None for city in graph}
     open_nodes = [(0, sourceNode)]
@@ -30,6 +31,7 @@ def dijkstra(graph: dict, sourceNode: str):
                 heappush(open_nodes, (new_distance, neighbor))
 
     return dist, nodes
+
 
 def shortestPath(graph: dict, sourceNode: str, destNode: str):
     distances, nodes = dijkstra(graph, sourceNode)
@@ -87,4 +89,4 @@ def createGraph():
 
 graph = createGraph()
 
-print(shortestPath(graph, "Arad", "Bucharest"))
+print(shortestPath(graph, "Arad", "Rimnicu Vilcea"))
