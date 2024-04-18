@@ -3,9 +3,9 @@ from sys import maxsize
 
 
 class Node:
-    def __init__(self, name: str, neighbors: list):
+    def __init__(self, name: str, neighbors: dict):
         self.name = name
-        self.neighbors = {neighbor[0]: neighbor[1] for neighbor in neighbors}
+        self.neighbors = neighbors
 
     def getDistance(self, node: str):
         return self.neighbors.get(node, maxsize)
@@ -56,26 +56,26 @@ def createGraph():
     ]
 
     neighborsList = [
-        [["Sibiu", 151], ["Zerind", 71]],
-        [["Oradea", 71], ["Arad", 75]],
-        [["Zerind", 75], ["Sibiu", 140], ["Timisoara", 118]],
-        [["Arad", 118], ["Lugoj", 111]],
-        [["Timisoara", 111], ["Mehadia", 70]],
-        [["Lugoj", 70], ["Dobreta", 75]],
-        [["Mehadia", 75], ["Craiova", 120]],
-        [["Arad", 140], ["Oradea", 151], ["Fagaras", 99], ["Rimnicu Vilcea", 80]],
-        [["Sibiu", 80], ["Craiova", 146], ["Pitesti", 97]],
-        [["Dobreta", 120], ["Rimnicu Vilcea", 146], ["Pitesti", 138]],
-        [["Sibiu", 99], ["Bucharest", 211]],
-        [["Rimnicu Vilcea", 97], ["Bucharest", 101], ["Craiova", 138]],
-        [["Fagaras", 211], ["Pitesti", 101], ["Giurgiu", 90], ["Urziceni", 85]],
-        [["Bucharest", 90]],
-        [["Bucharest", 85], ["Hirsova", 98], ["Vaslui", 142]],
-        [["Urziceni", 142], ["Iasi", 92]],
-        [["Vaslui", 92], ["Neamt", 87]],
-        [["Iasi", 87]],
-        [["Urziceni", 98], ["Eforie", 86]],
-        [["Hirsova", 86]]
+        {"Sibiu": 151, "Zerind": 71},
+        {"Oradea": 71, "Arad": 75},
+        {"Zerind": 75, "Sibiu": 140, "Timisoara": 118},
+        {"Arad": 118, "Lugoj": 111},
+        {"Timisoara": 111, "Mehadia": 70},
+        {"Lugoj": 70, "Dobreta": 75},
+        {"Mehadia": 75, "Craiova": 120},
+        {"Arad": 140, "Oradea": 151, "Fagaras": 99, "Rimnicu Vilcea": 80},
+        {"Sibiu": 80, "Craiova": 146, "Pitesti": 97},
+        {"Dobreta": 120, "Rimnicu Vilcea": 146, "Pitesti": 138},
+        {"Sibiu": 99, "Bucharest": 211},
+        {"Rimnicu Vilcea": 97, "Bucharest": 101, "Craiova": 138},
+        {"Fagaras": 211, "Pitesti": 101, "Giurgiu": 90, "Urziceni": 85},
+        {"Bucharest": 90},
+        {"Bucharest": 85, "Hirsova": 98, "Vaslui": 142},
+        {"Urziceni": 142, "Iasi": 92},
+        {"Vaslui": 92, "Neamt": 87},
+        {"Iasi": 87},
+        {"Urziceni": 98, "Eforie": 86},
+        {"Hirsova": 86}
     ]
 
     graph = {}
@@ -89,4 +89,4 @@ def createGraph():
 
 graph = createGraph()
 
-print(shortestPath(graph, "Arad", "Rimnicu Vilcea"))
+print(shortestPath(graph, "Arad", "Bucharest"))
