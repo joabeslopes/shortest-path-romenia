@@ -1,4 +1,3 @@
-from heapq import heappop, heappush
 from sys import maxsize
 
 
@@ -15,20 +14,18 @@ def dijkstra(graph: dict, sourceNode: str):
     dist = {city: maxsize for city in graph}
     dist[sourceNode] = 0
     nodes = {city: None for city in graph}
-    open_nodes = [(0, sourceNode)]
+    open_nodes = {sourceNode: 0}
 
     while open_nodes:
-        currentDistance, currentNode = heappop(open_nodes)
-
-        if currentDistance > dist[currentNode]:
-            continue
+        currentNode = min(open_nodes)
+        open_nodes.pop(currentNode)
 
         for neighbor, distance in graph[currentNode].neighbors.items():
             new_distance = dist[currentNode] + distance
             if new_distance < dist[neighbor]:
                 dist[neighbor] = new_distance
                 nodes[neighbor] = currentNode
-                heappush(open_nodes, (new_distance, neighbor))
+                open_nodes[neighbor] = new_distance
 
     return dist, nodes
 
