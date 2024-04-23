@@ -1,0 +1,1 @@
+This is a college project, to create a program to find the shortest path between two cities in Romenia. It's an exercise for the Artificial Intelligence class, made with help of my friend [Luiz](https://github.com/Luiz-Felipe189).
